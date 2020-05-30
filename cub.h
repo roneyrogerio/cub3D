@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/29 22:52:01 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:55:09 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 # define CUB_H
 # include <mlx.h>
 # include <stdlib.h>
+
+typedef struct	s_rgb
+{
+	double	a;
+	int		r;
+	int		g;
+	int		b;
+}				t_rgb;
+
+typedef struct	s_alpha
+{
+	t_rgb	rgb1;
+	t_rgb	rgb2;
+}				t_alpha;
 
 typedef struct	s_map
 {
@@ -45,7 +59,7 @@ void			mlx_pixel_put_image();
 void			raycast();
 void			map();
 int				frame();
-int				mapc();
+int				rgb_map();
 int				rgb_sum();
 int				key_event();
 int				quit();

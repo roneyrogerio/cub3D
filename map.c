@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 00:25:00 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/29 22:30:47 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:16:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	map(t_core *core)
 			mxy = (j - (j % core->map.slice)) / core->map.slice;
 			y = core->ht - (core->mxht * core->map.slice) + j - core->map.mgny;
 			if (mx[mxy][mxx] >= 0)
-				mlx_pixel_put_image(core->img, x, y, mapc(mx[mxy][mxx]), 0.7);
+				mlx_pixel_put_image(core->img, x, y, rgb_map(mx[mxy][mxx]));
 			j++;
 		}
 		i++;

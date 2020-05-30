@@ -6,37 +6,33 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:18:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/29 22:30:21 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:49:45 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	mapc(int p)
+int	rgb_map(int p)
 {
 	if (p > 0)
-		return (0xFF8900);
+		return (0x4DFF8900);
 	if (p == 0)
-		return (0xFFFFFF);
+		return (0x4DFFFFFF);
 }
 
-int	rgb_sum(int rgb, int rgb2, double alpha)
+int	rgb_alpha(int rgb1, int rgb2)
 {
-	int red;
-	int green;
-	int blue;
-	int red2;
-	int green2;
-	int blue2;
+	t_alpha	v;
 
-	red = ((rgb >> 16) & 0xFF) * (1.0 - alpha);
-	green = ((rgb >> 8) & 0xFF) * (1.0 - alpha);
-	blue = ((rgb >> 0) & 0xFF) * (1.0 - alpha);
-	red2 = ((rgb2 >> 16) & 0xFF) * alpha;
-	green2 = ((rgb2 >> 8) & 0xFF) * alpha;
-	blue2 = ((rgb2 >> 0) & 0xFF) * alpha;
-	red += red2;
-	green += green2;
-	blue += blue2;
-	return (red * 65536 + green * 256 + blue);
+	v.rgb1.r = (rgb1 >> 16) & 0xFF;
+	v.rgb1.g = (rgb1 >> 8) & 0xFF;
+	v.rgb1.b = (rgb1 >> 0) & 0xFF;
+	v.rgb2.a = ((rgb2 >> 24) & 0xFF) / 255.0;
+	v.rgb2.r = (rgb2 >> 16) & 0xFF;
+	v.rgb2.g = (rgb2 >> 8) & 0xFF;
+	v.rgb2.b = (rgb2 >> 0) & 0xFF;
+	v.rgb1.r = v.rgb2.r * (1 - v.rgb2.a) + v.rgb1.r * v.rgb2.a;
+	v.rgb1.g = v.rgb2.g * (1 - v.rgb2.a) + v.rgb1.g * v.rgb2.a;
+	v.rgb1.b = v.rgb2.b * (1 - v.rgb2.a) + v.rgb1.b * v.rgb2.a;
+	return (v.rgb1.r * 65536 + v.rgb1.g * 256 + v.rgb1.b);
 }

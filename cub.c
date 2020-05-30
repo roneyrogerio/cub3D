@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:51:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/29 22:40:41 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:51:37 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "key_event.c"
 #include "quit.c"
 
-void	mlx_pixel_put_image(void *img, int x, int y, int color, double alpha)
+void	mlx_pixel_put_image(void *img, int x, int y, int color)
 {
 	char	*dst;
 	int		bpp;
@@ -27,7 +27,7 @@ void	mlx_pixel_put_image(void *img, int x, int y, int color, double alpha)
 
 	dst = mlx_get_data_addr(img, &bpp, &size_line, &endian);
 	dst += y * size_line + x * (bpp / 8);
-	*(unsigned int*)dst = rgb_sum(*(unsigned int*)dst, color, alpha);
+	*(unsigned int*)dst = rgb_alpha(*(unsigned int*)dst, color);
 }
 
 double	rand_double(void)
@@ -52,16 +52,16 @@ void	raycast(t_core *core)
 		while (j < core->wd)
 		{
 			if (rand_int(0, 1))
-				mlx_pixel_put_image(core->img, j, i, 0xffffff, 0.5);
+				mlx_pixel_put_image(core->img, j, i, 0xffffff);
 			else
-				mlx_pixel_put_image(core->img, j, i, 0x181a18, 0.5);
+				mlx_pixel_put_image(core->img, j, i, 0x181a18);
 			j++;
 		}
 		i++;
 	}
 }
 
-int		main()
+int		main(void)
 {
 	t_core	*core;
 
