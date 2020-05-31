@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 00:25:00 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 01:16:12 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 01:16:21 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub3d.h"
 
 int mx[24][24]=
 {
@@ -40,38 +40,37 @@ int mx[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void    map_setup(t_core *core)
+void	mini_map_setup(t_vars *vars)
 {
-	core->map.size = (core->ht < core->wd ? core->ht : core->wd) / 7;
-	core->map.slice = core->map.size;
-	core->map.slice /= core->mxht > core->mxwd ? core->mxht : core->mxwd;
-	core->map.mgnx = core->wd / 20;
-	core->map.mgny = core->ht / 16;
+	vars->map.size = (vars->ht < vars->wd ? vars->ht : vars->wd) / 5;
+	vars->map.slice = vars->map.size;
+	vars->map.slice /= vars->mx_ht > vars->mx_wd ? vars->mx_ht : vars->mx_wd;
+	vars->map.mgn_x = vars->wd / 20;
+	vars->map.mgn_y = vars->ht / 16;
 }
 
-void	map(t_core *core)
+void	mini_map_draw(t_vars *vars)
 {
-	int	i;
-	int	j;
 	int x;
 	int y;
-	int mxx;
-	int mxy;
+	int mx_x;
+	int mx_y;
 
-	i = 0;
-	j = 0;
-	while (i < core->mxwd * core->map.slice && !(j = 0))
+	x = vars->wd - (vars->mx_wd * vars->map.slice) - vars->map.mgn_x;
+	while (x < vars->wd - vars->map.mgn_x)
 	{
-		x = core->wd - (core->mxwd * core->map.slice) + i - core->map.mgnx;
-		while (j < core->mxht * core->map.slice)
+		y = vars->ht - vars->mx_ht * vars->map.slice - vars->map.mgn_y;
+		while (y < vars->ht - vars->map.mgn_y)
 		{
-			mxx = (i - (i % core->map.slice)) / core->map.slice;
-			mxy = (j - (j % core->map.slice)) / core->map.slice;
-			y = core->ht - (core->mxht * core->map.slice) + j - core->map.mgny;
-			if (mx[mxy][mxx] >= 0)
-				mlx_pixel_put_image(core->img, x, y, rgb_map(mx[mxy][mxx]));
-			j++;
+			mx_x = vars->mx_wd * vars->map.slice;
+			mx_x = mx_x - (vars->wd - x - vars->map.mgn_x);
+			mx_x = (mx_x - mx_x % vars->map.slice) / vars->map.slice;
+			mx_y = vars->mx_ht * vars->map.slice;
+			mx_y = mx_y - (vars->ht - y - vars->map.mgn_y);
+			mx_y = (mx_y - mx_y % vars->map.slice) / vars->map.slice;
+			mlx_pixel_put_image(vars->img, x, y, rgb_map(mx[mx_y][mx_x]));
+			y++;
 		}
-		i++;
+		x++;
 	}
 }

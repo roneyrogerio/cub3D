@@ -6,15 +6,15 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/29 22:31:24 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/30 23:35:50 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub3d.h"
 
-int	quit(t_core *core)
+int	quit(t_vars *vars)
 {
-	mlx_destroy_image(core->mlx, core->img);
-	mlx_destroy_window(core->mlx, core->win);
+	mlx_destroy_image(vars->mlx, vars->img);
+	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 }

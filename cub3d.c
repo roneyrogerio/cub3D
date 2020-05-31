@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:51:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 01:51:37 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 00:19:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
-#include "core.c"
-#include "frame.c"
-#include "rgb.c"
-#include "map.c"
-#include "key_event.c"
-#include "quit.c"
+#include "cub3d.h"
+#include "engine/vars.c"
+#include "engine/frame.c"
+#include "engine/rgb_utils.c"
+#include "engine/mini_map.c"
+#include "engine/key_event.c"
+#include "engine/quit.c"
 
 void	mlx_pixel_put_image(void *img, int x, int y, int color)
 {
@@ -40,7 +40,7 @@ int		rand_int(int a, int b)
 	return ((int)((b - a + 1) * rand_double()) + a);
 }
 
-void	raycast(t_core *core)
+void	raycast(t_vars *core)
 {
 	int i;
 	int j;
@@ -52,9 +52,9 @@ void	raycast(t_core *core)
 		while (j < core->wd)
 		{
 			if (rand_int(0, 1))
-				mlx_pixel_put_image(core->img, j, i, 0xffffff);
+				mlx_pixel_put_image(core->img, j, i, 0xFFffffff);
 			else
-				mlx_pixel_put_image(core->img, j, i, 0x181a18);
+				mlx_pixel_put_image(core->img, j, i, 0xFF181a18);
 			j++;
 		}
 		i++;
@@ -63,16 +63,16 @@ void	raycast(t_core *core)
 
 int		main(void)
 {
-	t_core	*core;
+	t_vars	*vars;
 
-	core = mcore();
-	core_init(core);
-	core->mlx = mlx_init();
-	core->win = mlx_new_window(core->mlx, core->wd, core->ht, "cub3D");
-	core->img = mlx_new_image(core->mlx, core->wd, core->ht);
-	mlx_loop_hook(core->mlx, frame, core);
-	mlx_key_hook(core->win, key_event, core);
-	//mlx_hook(core->win, 0, 1L<<5, quit, core);
-	mlx_loop(core->mlx);
+	vars = my_vars();
+	vars_setup(vars);
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, vars->wd, vars->ht, "cub3D");
+	vars->img = mlx_new_image(vars->mlx, vars->wd, vars->ht);
+	mlx_loop_hook(vars->mlx, frame, vars);
+	mlx_key_hook(vars->win, key_event, vars);
+	//mlx_hook(vars->win, 0, 1L<<5, quit, vars);
+	mlx_loop(vars->mlx);
 	return (0);
 }

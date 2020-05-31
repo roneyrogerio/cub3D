@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 01:55:09 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 00:14:11 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef CUB3D_H
+# define CUB3D_H
 # include <mlx.h>
 # include <stdlib.h>
 
@@ -33,11 +33,11 @@ typedef struct	s_map
 {
 	int	size;
 	int	slice;
-	int mgnx;
-	int mgny;
+	int mgn_x;
+	int mgn_y;
 }				t_map;
 
-typedef struct	s_core
+typedef struct	s_vars
 {
 	void	*mlx;
 	void	*win;
@@ -47,17 +47,17 @@ typedef struct	s_core
 	int		px;
 	int		py;
 	int		**mx;
-	int		mxwd;
-	int		mxht;
+	int		mx_wd;
+	int		mx_ht;
 	t_map	map;
-}				t_core;
+}				t_vars;
 
-t_core			*mcore();
-void			core_init();
-void			map_setup();
+t_vars			*my_vars();
+void			vars_setup();
+void			mini_map_setup();
 void			mlx_pixel_put_image();
 void			raycast();
-void			map();
+void			mini_map_draw();
 int				frame();
 int				rgb_map();
 int				rgb_sum();
