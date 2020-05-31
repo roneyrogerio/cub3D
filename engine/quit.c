@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 23:35:50 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 14:09:05 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	quit(t_vars *vars)
 {
-	mlx_destroy_image(vars->mlx, vars->img);
+	mlx_destroy_image(vars->mlx, vars->frame);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 }

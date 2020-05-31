@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:51:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 00:19:15 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 14:07:41 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	raycast(t_vars *core)
 		while (j < core->wd)
 		{
 			if (rand_int(0, 1))
-				mlx_pixel_put_image(core->img, j, i, 0xFFffffff);
+				mlx_pixel_put_image(core->frame, j, i, 0xFFffffff);
 			else
-				mlx_pixel_put_image(core->img, j, i, 0xFF181a18);
+				mlx_pixel_put_image(core->frame, j, i, 0xFF181a18);
 			j++;
 		}
 		i++;
@@ -69,8 +69,8 @@ int		main(void)
 	vars_setup(vars);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->wd, vars->ht, "cub3D");
-	vars->img = mlx_new_image(vars->mlx, vars->wd, vars->ht);
-	mlx_loop_hook(vars->mlx, frame, vars);
+	vars->frame = mlx_new_image(vars->mlx, vars->wd, vars->ht);
+	mlx_loop_hook(vars->mlx, frame_draw, vars);
 	mlx_key_hook(vars->win, key_event, vars);
 	//mlx_hook(vars->win, 0, 1L<<5, quit, vars);
 	mlx_loop(vars->mlx);
