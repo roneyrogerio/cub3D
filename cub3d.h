@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 14:04:07 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 23:25:52 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ typedef struct	s_vars
 t_vars			*my_vars();
 void			vars_setup();
 void			mini_map_setup();
-void			mlx_pixel_put_image();
+void			frame_pixel_draw();
 void			raycast();
 void			mini_map_draw();
 int				frame_draw();
 int				rgb_map();
-int				rgb_sum();
+int				rgb_alpha();
 int				key_event();
 int				quit();
 #endif

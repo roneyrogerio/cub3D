@@ -6,29 +6,11 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:51:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 14:07:41 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/05/31 23:26:28 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "engine/vars.c"
-#include "engine/frame.c"
-#include "engine/rgb_utils.c"
-#include "engine/mini_map.c"
-#include "engine/key_event.c"
-#include "engine/quit.c"
-
-void	mlx_pixel_put_image(void *img, int x, int y, int color)
-{
-	char	*dst;
-	int		bpp;
-	int		size_line;
-	int		endian;
-
-	dst = mlx_get_data_addr(img, &bpp, &size_line, &endian);
-	dst += y * size_line + x * (bpp / 8);
-	*(unsigned int*)dst = rgb_alpha(*(unsigned int*)dst, color);
-}
 
 double	rand_double(void)
 {
@@ -52,9 +34,9 @@ void	raycast(t_vars *core)
 		while (j < core->wd)
 		{
 			if (rand_int(0, 1))
-				mlx_pixel_put_image(core->frame, j, i, 0xFFffffff);
+				frame_pixel_draw(core->frame, j, i, 0xFFffffff);
 			else
-				mlx_pixel_put_image(core->frame, j, i, 0xFF181a18);
+				frame_pixel_draw(core->frame, j, i, 0x80181a18);
 			j++;
 		}
 		i++;
