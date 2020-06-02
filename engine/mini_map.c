@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 00:25:00 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/02 12:21:20 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/02 12:28:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	mini_map_draw(t_vars *vars)
 		{
 			mx_x = vars->mx_wd * vars->map.slice;
 			mx_x = mx_x - (vars->wd - x - vars->map.mgn_x);
-			mx_x = mx_x / vars->map.slice;
+			mx_x /= vars->map.slice;
 			mx_y = vars->mx_ht * vars->map.slice;
 			mx_y = mx_y - (vars->ht - y - vars->map.mgn_y);
-			mx_y = mx_y / vars->map.slice;
+			mx_y /= vars->map.slice;
 			frame_pixel_draw(vars->frame, x, y, rgb_map(mx[mx_y][mx_x]));
 			y++;
 		}
