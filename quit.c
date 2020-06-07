@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_event.c                                        :+:      :+:    :+:   */
+/*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/29 22:10:15 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 23:13:22 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/06 23:58:50 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
-int		key_event(int code, t_vars *vars)
+int	quit(t_glib *glib)
 {
-	if (code == 65307)
-		quit(vars);
-	return (0);
+	mlx_destroy_image(glib->mlx, glib->frame);
+	mlx_destroy_window(glib->mlx, glib->win);
+	exit(0);
 }

@@ -6,39 +6,29 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/07 01:00:44 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/07 01:01:24 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
+NAME = engine.a
 CC = clang
-SRC = cub3d.c frame.c key_event.c lib_init.c get_vars.c quit.c \
-	  rgb_alpha.c
+SRC = eng_init.c eng_camera.c eng_mini_map.c eng_get_window_size.c \
+	  eng_set_movement.c
 OBJS = $(SRC:.c=.o)
 CFLAGS = -Werror -Wextra -Wall
-LIBS = -lmlx -lXext -lX11
-ENG = engine
-ENG_LIB = engine.a
 
 all: $(NAME)
 
-eng:
-	make -C $(ENG)
-	cp $(ENG)/$(ENG_LIB) $(ENG_LIB)
-
-$(NAME): eng $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(ENG_LIB) $(LIBS)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C $(ENG)
 	rm -rf $(OBJS)
 
 fclean: clean
-	make fclean -C $(ENG)
-	rm -f $(ENG_LIB)
 	rm -f $(NAME)
 
 re: fclean $(NAME)

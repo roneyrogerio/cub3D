@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   lib_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/06 23:59:33 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/06 20:48:08 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/06 23:57:25 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+int		glib_init(void *eng, t_glib *glib)
 {
-	t_vars *vars;
+	int	wd;
+	int ht;
 
-	vars = get_vars();
-	if (!(vars->eng = eng_init()))
-		quit(&vars->glib);
-	if (glib_init(vars->eng, &vars->glib) == FAILURE)
-		quit(&vars->glib);
-	mlx_loop_hook(vars->glib.mlx, frame, vars);
-	mlx_hook(vars->glib.win, 2, 1, key_press, vars);
-	mlx_hook(vars->glib.win, 3, 2, key_release, vars);
-	mlx_loop(vars->glib.mlx);
+	eng_get_window_size(eng, &wd, &ht);
+	glib->mlx = mlx_init();
+	if (glib->mlx == NULL)
+		return (FAILURE);
+	glib->win = mlx_new_window(glib->mlx, wd, ht, "cub3D");
+	if (glib->win == NULL)
+		return (FAILURE);
+	glib->frame = mlx_new_image(glib->mlx, wd, ht);
+	if (glib->frame == NULL)
+		return (FAILURE);
 	return (SUCCESS);
 }

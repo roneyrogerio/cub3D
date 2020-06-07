@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_map.c                                         :+:      :+:    :+:   */
+/*   eng_mini_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 00:25:00 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/02 12:28:12 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:32:56 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "eng_int.h"
 
 int mx[24][24]=
 {
@@ -25,7 +25,7 @@ int mx[24][24]=
   {1,0,0,0,0,0,2,2,0,2,2,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,1,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -40,35 +40,37 @@ int mx[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	mini_map_setup(t_vars *vars)
+int	rgb_map(int p)
 {
-	vars->map.size = (vars->ht < vars->wd ? vars->ht : vars->wd) / 5;
-	vars->map.slice = vars->map.size;
-	vars->map.slice /= vars->mx_ht > vars->mx_wd ? vars->mx_ht : vars->mx_wd;
-	vars->map.mgn_x = vars->wd / 20;
-	vars->map.mgn_y = vars->ht / 16;
+	if (p > 0)
+		return (0x80FF8900);
+	else if (p == 0)
+		return (0x80FFFFFF);
+	else if (p < 0)
+		return (0x00000000);
+	return (0);
 }
 
-void	mini_map_draw(t_vars *vars)
+void	eng_mini_map(t_eng *eng, void (*draw)(int, int, int))
 {
 	int x;
 	int y;
 	int mx_x;
 	int mx_y;
 
-	x = vars->wd - (vars->mx_wd * vars->map.slice) - vars->map.mgn_x;
-	while (x < vars->wd - vars->map.mgn_x)
+	x = eng->wd - (eng->mx_wd * eng->map.sz) - eng->map.mgn_x;
+	while (x < eng->wd - eng->map.mgn_x)
 	{
-		y = vars->ht - vars->mx_ht * vars->map.slice - vars->map.mgn_y;
-		while (y < vars->ht - vars->map.mgn_y)
+		y = eng->ht - eng->mx_ht * eng->map.sz - eng->map.mgn_y;
+		while (y < eng->ht - eng->map.mgn_y)
 		{
-			mx_x = vars->mx_wd * vars->map.slice;
-			mx_x = mx_x - (vars->wd - x - vars->map.mgn_x);
-			mx_x /= vars->map.slice;
-			mx_y = vars->mx_ht * vars->map.slice;
-			mx_y = mx_y - (vars->ht - y - vars->map.mgn_y);
-			mx_y /= vars->map.slice;
-			frame_pixel_draw(vars->frame, x, y, rgb_map(mx[mx_y][mx_x]));
+			mx_x = eng->mx_wd * eng->map.sz;
+			mx_x = mx_x - (eng->wd - x - eng->map.mgn_x);
+			mx_x /= eng->map.sz;
+			mx_y = eng->mx_ht * eng->map.sz;
+			mx_y = mx_y - (eng->ht - y - eng->map.mgn_y);
+			mx_y /= eng->map.sz;
+			draw(x, y, rgb_map(mx[mx_y][mx_x]));
 			y++;
 		}
 		x++;

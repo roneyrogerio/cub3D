@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   eng_get_window_size.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/06 23:59:33 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/06 20:29:16 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/06 21:54:52 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "eng_int.h"
 
-int	main(void)
+void	eng_get_window_size(t_eng *eng, int *wd, int *ht)
 {
-	t_vars *vars;
-
-	vars = get_vars();
-	if (!(vars->eng = eng_init()))
-		quit(&vars->glib);
-	if (glib_init(vars->eng, &vars->glib) == FAILURE)
-		quit(&vars->glib);
-	mlx_loop_hook(vars->glib.mlx, frame, vars);
-	mlx_hook(vars->glib.win, 2, 1, key_press, vars);
-	mlx_hook(vars->glib.win, 3, 2, key_release, vars);
-	mlx_loop(vars->glib.mlx);
-	return (SUCCESS);
+	*wd = eng->wd;
+	*ht = eng->ht;
 }

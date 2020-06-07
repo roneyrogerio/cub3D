@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars.c                                             :+:      :+:    :+:   */
+/*   eng.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/29 20:22:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/30 23:44:31 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/03 17:30:50 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/07 01:06:39 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#ifndef ENG_H
+# define ENG_H
 
-t_vars	*my_vars(void)
-{
-	static t_vars	vars;
+void	eng_camera(void *core, void (*draw)(int, int, int));
+void	eng_mini_map(void *eng, void (*draw)(int, int, int));
+void	*eng_init(void);
+void	eng_get_window_size(void *eng, int *wd, int *ht);
+void	eng_set_walk(void *eng, int value);
+void	eng_set_turn(void *eng, int value);
 
-	return (&vars);
-}
-
-void	vars_setup(t_vars *vars)
-{
-	vars->ht = 593;
-	vars->wd = 800;
-	vars->mx_wd = 14;
-	vars->mx_ht = 24;
-	mini_map_setup();
-}
+#endif

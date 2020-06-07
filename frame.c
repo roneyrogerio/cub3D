@@ -6,20 +6,22 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:04:24 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 23:24:03 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/07 00:07:44 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
-int	frame_draw(t_vars *vars)
+int		frame(t_vars *vars)
 {
-	raycast(vars);
-	mini_map_draw(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->frame, 0, 0);
+	//raycast(vars);
+	eng_mini_map(vars->eng, &draw);
+	mlx_put_image_to_window(
+			vars->glib.mlx, vars->glib.win, vars->glib.frame, 0, 0);
+	return (0);
 }
 
-void	frame_pixel_draw(void *img, int x, int y, int color)
+void	pixel_draw(void *img, int x, int y, int color)
 {
 	char	*dst;
 	int		bpp;
@@ -31,3 +33,7 @@ void	frame_pixel_draw(void *img, int x, int y, int color)
 	*(unsigned int*)dst = rgb_alpha(*(unsigned int*)dst, color);
 }
 
+void	draw(int x, int y, int color)
+{
+	pixel_draw((get_vars())->glib.frame, x, y, color);
+}

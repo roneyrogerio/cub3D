@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quit.c                                             :+:      :+:    :+:   */
+/*   get_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 14:09:05 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/06 20:49:09 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/06 23:42:45 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
-int	quit(t_vars *vars)
+t_vars	*get_vars(void)
 {
-	mlx_destroy_image(vars->mlx, vars->frame);
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
+	static t_vars	vars;
+
+	return (&vars);
 }

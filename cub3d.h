@@ -6,14 +6,30 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/05/31 23:25:52 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/07 00:15:06 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# include "eng.h"
 # include <mlx.h>
 # include <stdlib.h>
+# define SUCCESS 0
+# define FAILURE 1
+
+typedef struct	s_glib
+{
+	void	*mlx;
+	void	*win;
+	void	*frame;
+}				t_glib;
+
+typedef struct	s_vars
+{
+	void		*eng;
+	t_glib		glib;
+}				t_vars;
 
 typedef struct	s_rgb
 {
@@ -29,38 +45,12 @@ typedef struct	s_alpha
 	t_rgb	rgb2;
 }				t_alpha;
 
-typedef struct	s_map
-{
-	int	size;
-	int	slice;
-	int mgn_x;
-	int mgn_y;
-}				t_map;
-
-typedef struct	s_vars
-{
-	void	*mlx;
-	void	*win;
-	void	*frame;
-	int		wd;
-	int		ht;
-	int		px;
-	int		py;
-	int		**mx;
-	int		mx_wd;
-	int		mx_ht;
-	t_map	map;
-}				t_vars;
-
-t_vars			*my_vars();
-void			vars_setup();
-void			mini_map_setup();
-void			frame_pixel_draw();
-void			raycast();
-void			mini_map_draw();
-int				frame_draw();
-int				rgb_map();
-int				rgb_alpha();
-int				key_event();
-int				quit();
+int				rgb_alpha(int rgb1, int rgb2);
+int				glib_init(void *eng, t_glib *glib);
+int				frame(t_vars *vars);
+void			draw(int x, int y, int color);
+int				key_press(int code, t_vars *vars);
+int				key_release(int code, t_vars *vars);
+t_vars			*get_vars(void);
+int				quit(t_glib *glib);
 #endif
