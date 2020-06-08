@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:04:24 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/07 00:07:44 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/08 03:18:28 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 int		frame(t_vars *vars)
 {
-	//raycast(vars);
-	eng_mini_map(vars->eng, &draw);
+	int	wd;
+	int ht;
+
+	eng_get_window_size(vars->eng, &wd, &ht);
+	vars->glib.frame = mlx_new_image(vars->glib.mlx, wd, ht);
+	if (vars->glib.frame == NULL)
+		return (FAILURE);
+	eng_mini_map(vars->eng, &frame_draw);
 	mlx_put_image_to_window(
 			vars->glib.mlx, vars->glib.win, vars->glib.frame, 0, 0);
+	mlx_destroy_image(vars->glib.mlx, vars->glib.frame);
+	vars->glib.frame = NULL;
 	return (0);
 }
 
-void	pixel_draw(void *img, int x, int y, int color)
+void		frame_draw(int x, int y, int color)
 {
-	char	*dst;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	void		*img;
+	unsigned	*pixel;
 
-	dst = mlx_get_data_addr(img, &bpp, &size_line, &endian);
-	dst += y * size_line + x * (bpp / 8);
-	*(unsigned int*)dst = rgb_alpha(*(unsigned int*)dst, color);
-}
-
-void	draw(int x, int y, int color)
-{
-	pixel_draw((get_vars())->glib.frame, x, y, color);
+	img = (get_vars())->glib.frame;
+	pixel = mlx_image_pixel_ptr(img, x, y);
+	*pixel = rgb_alpha(*pixel, color);
 }

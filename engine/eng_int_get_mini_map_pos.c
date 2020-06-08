@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_init.c                                         :+:      :+:    :+:   */
+/*   eng_int_get_mini_map_pos.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 20:48:08 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:06:10 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/07 22:58:24 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/08 01:36:27 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "eng_int.h"
 
-int		glib_init(void *eng, t_glib *glib)
+void	eng_int_get_mini_map_pos(t_eng *eng, int *x, int *y)
 {
-	int	wd;
-	int ht;
-
-	eng_get_window_size(eng, &wd, &ht);
-	glib->mlx = mlx_init();
-	if (glib->mlx == NULL)
-		return (FAILURE);
-	glib->win = mlx_new_window(glib->mlx, wd, ht, "cub3D");
-	if (glib->win == NULL)
-		return (FAILURE);
-	//glib->frame = mlx_new_image(glib->mlx, wd, ht);
-	//if (glib->frame == NULL)
-	//	return (FAILURE);
-	return (SUCCESS);
+	*x = eng->wd - eng->mx_wd * eng->map.sz - eng->map.mgn_x;
+	*y = eng->ht - eng->mx_ht * eng->map.sz - eng->map.mgn_y;
 }

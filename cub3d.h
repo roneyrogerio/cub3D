@@ -6,13 +6,13 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/07 00:15:06 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/08 02:28:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "eng.h"
+# include "engine/eng.h"
 # include <mlx.h>
 # include <stdlib.h>
 # define SUCCESS 0
@@ -48,7 +48,8 @@ typedef struct	s_alpha
 int				rgb_alpha(int rgb1, int rgb2);
 int				glib_init(void *eng, t_glib *glib);
 int				frame(t_vars *vars);
-void			draw(int x, int y, int color);
+void			frame_draw(int x, int y, int color);
+unsigned		*mlx_image_pixel_ptr(void *img, int x, int y);
 int				key_press(int code, t_vars *vars);
 int				key_release(int code, t_vars *vars);
 t_vars			*get_vars(void);

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_init.c                                         :+:      :+:    :+:   */
+/*   eng_int_circle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 20:48:08 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:06:10 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/08 00:01:59 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/08 03:31:39 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "eng_int.h"
 
-int		glib_init(void *eng, t_glib *glib)
+void	eng_int_circle(t_circle *circle, void (*draw)(int, int, int))
 {
-	int	wd;
-	int ht;
+	int	height;
+	int	x;
+	int y;
 
-	eng_get_window_size(eng, &wd, &ht);
-	glib->mlx = mlx_init();
-	if (glib->mlx == NULL)
-		return (FAILURE);
-	glib->win = mlx_new_window(glib->mlx, wd, ht, "cub3D");
-	if (glib->win == NULL)
-		return (FAILURE);
-	//glib->frame = mlx_new_image(glib->mlx, wd, ht);
-	//if (glib->frame == NULL)
-	//	return (FAILURE);
-	return (SUCCESS);
+	x = -circle->radius;
+	while (x < circle->radius)
+	{
+		height = (int)sqrt(circle->radius * circle->radius - x * x);
+		y = -height;
+		while (y < height)
+		{
+			draw(x + circle->x, y + circle->y, circle->color);
+			y++;
+		}
+		x++;
+	}
 }

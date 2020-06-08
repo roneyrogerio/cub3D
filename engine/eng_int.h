@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 17:30:50 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/07 00:26:12 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/08 01:13:39 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct	s_player
 	double	radius;
 	int		turn;
 	int		walk;
-	double	rotation_angle;
+	double	turn_angle;
 	double	move_speed;
-	double	rotation_speed;
+	double	turn_speed;
 }				t_player;
 
 typedef struct	s_eng
@@ -45,6 +45,15 @@ typedef struct	s_eng
 	t_player	player;
 }				t_eng;
 
-int				rgb_map(int p);
+typedef struct	s_circle
+{
+	int	x;
+	int	y;
+	int	radius;
+	int	color;
+}				t_circle;
 
+int				rgb_map(int p);
+void			eng_int_get_mini_map_pos(t_eng *eng, int *x, int *y);
+void			eng_int_circle(t_circle *circle, void (*draw)(int, int, int));
 #endif
