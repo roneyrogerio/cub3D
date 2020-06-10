@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 22:10:15 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/07 00:01:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/10 02:16:08 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ int		key_press(int code, t_vars *vars)
 {
 	if (code == 65307)
 		quit(&vars->glib);
-	if (code == 119)
-		eng_set_walk(vars->eng, 1);
-	if (code == 97)
-		eng_set_turn(vars->eng, -1);
 	if (code == 115)
+		eng_set_walk(vars->eng, 1);
+	if (code == 65361)
+		eng_set_turn(vars->eng, -1);
+	if (code == 119)
 		eng_set_walk(vars->eng, -1);
-	if (code == 100)
+	if (code == 65363)
 		eng_set_turn(vars->eng, 1);
+	if (code == 97)
+		eng_set_side(vars->eng, -1);
+	if (code == 100)
+		eng_set_side(vars->eng, 1);
 	return (0);
 }
 
@@ -31,11 +35,15 @@ int		key_release(int code, t_vars *vars)
 {
 	if (code == 119)
 		eng_set_walk(vars->eng, 0);
-	if (code == 97)
+	if (code == 65361)
 		eng_set_turn(vars->eng, 0);
 	if (code == 115)
 		eng_set_walk(vars->eng, 0);
-	if (code == 100)
+	if (code == 65363)
 		eng_set_turn(vars->eng, 0);
+	if (code == 97)
+		eng_set_side(vars->eng, 0);
+	if (code == 100)
+		eng_set_side(vars->eng, 0);
 	return (0);
 }

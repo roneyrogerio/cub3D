@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 17:30:50 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/07 01:06:39 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/10 01:21:30 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	*eng_init(void);
 void	eng_get_window_size(void *eng, int *wd, int *ht);
 void	eng_set_walk(void *eng, int value);
 void	eng_set_turn(void *eng, int value);
+void	eng_set_side(void *eng, int value);
+void	eng_movement_update(void *eng);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 19:54:13 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:33:55 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:51:42 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_eng		*eng_init(void)
 	eng.mx_ht = 24;
 	eng.player.x = 0.4;
 	eng.player.y = 0.5;
-	eng.player.radius = 0.2;
+	eng.player.radius = 0.4;
 	eng.player.turn = 0;
 	eng.player.walk = 0;
-	eng.player.turn_angle = M_PI / 2;
-	eng.player.move_speed = 0.05;
+	eng.player.angle = M_PI / 2;
+	eng.player.move_speed = 0.002;
 	eng.player.turn_speed = 2 * (M_PI / 180);
-	eng.map.sz = (eng.ht < eng.wd ? eng.ht : eng.wd) / 5;
+	eng.map.sz = (eng.ht < eng.wd ? eng.ht : eng.wd) / 2;
 	eng.map.sz /= eng.mx_ht > eng.mx_wd ? eng.mx_ht : eng.mx_wd;
 	eng.map.sz = eng.map.sz > 0 ? eng.map.sz : 1;
 	eng.map.mgn_x = eng.wd / 20;

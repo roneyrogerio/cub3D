@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:04:24 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:18:28 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:49:05 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		frame(t_vars *vars)
 	int	wd;
 	int ht;
 
+	eng_movement_update(vars->eng);
 	eng_get_window_size(vars->eng, &wd, &ht);
 	vars->glib.frame = mlx_new_image(vars->glib.mlx, wd, ht);
 	if (vars->glib.frame == NULL)

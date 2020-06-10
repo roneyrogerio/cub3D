@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 00:01:59 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:31:39 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/08 05:40:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	eng_int_circle(t_circle *circle, void (*draw)(int, int, int))
 	while (x < circle->radius)
 	{
 		height = (int)sqrt(circle->radius * circle->radius - x * x);
-		y = -height;
+		y = -height - -1;
 		while (y < height)
 		{
 			draw(x + circle->x, y + circle->y, circle->color);

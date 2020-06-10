@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 17:30:50 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 01:13:39 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/10 01:16:17 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct	s_player
 	double	radius;
 	int		turn;
 	int		walk;
-	double	turn_angle;
+	int		side;
+	double	angle;
 	double	move_speed;
 	double	turn_speed;
 }				t_player;
