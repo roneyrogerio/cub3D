@@ -6,16 +6,21 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/09 23:03:10 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/11 22:37:26 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars *vars;
 
+	if (argc == 1 && argv[0])
+	{
+		write(2, "\e[31mMissing configuration file in the argument\n", 48);
+		exit(FAILURE);
+	}
 	vars = get_vars();
 	if (!(vars->eng = eng_init()))
 		quit(&vars->glib);

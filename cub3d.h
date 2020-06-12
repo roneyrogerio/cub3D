@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 02:28:12 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/11 22:31:47 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 # include "engine/eng.h"
 # include <mlx.h>
+# include <unistd.h>
 # include <stdlib.h>
 # define SUCCESS 0
 # define FAILURE 1

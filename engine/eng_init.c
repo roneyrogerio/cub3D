@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 19:54:13 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/09 16:51:42 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/10 07:14:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_eng		*eng_init(void)
 	eng.mx_ht = 24;
 	eng.player.x = 0.4;
 	eng.player.y = 0.5;
-	eng.player.radius = 0.4;
+	eng.player.radius = 0.2;
 	eng.player.turn = 0;
 	eng.player.walk = 0;
 	eng.player.angle = M_PI / 2;
