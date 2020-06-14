@@ -6,13 +6,14 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/11 22:31:47 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/14 05:17:08 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "engine/eng.h"
+# include "libft.h"
+# include "eng.h"
 # include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -30,6 +31,7 @@ typedef struct	s_vars
 {
 	void		*eng;
 	t_glib		glib;
+	int			save;
 }				t_vars;
 
 typedef struct	s_rgb
@@ -47,7 +49,8 @@ typedef struct	s_alpha
 }				t_alpha;
 
 int				rgb_alpha(int rgb1, int rgb2);
-int				glib_init(void *eng, t_glib *glib);
+int				glib_init(t_glib *glib);
+int				window_init(void *eng, t_glib *glib);
 int				frame(t_vars *vars);
 void			frame_draw(int x, int y, int color);
 unsigned		*mlx_image_pixel_ptr(void *img, int x, int y);

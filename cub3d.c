@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/11 22:37:26 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/14 04:53:06 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	main(int argc, char **argv)
 	vars = get_vars();
 	if (!(vars->eng = eng_init()))
 		quit(&vars->glib);
-	if (glib_init(vars->eng, &vars->glib) == FAILURE)
+	if (glib_init(&vars->glib) == FAILURE)
+		quit(&vars->glib);
+	if (argc >= 3 && !ft_strncmp(argv[2], "--save", 6) && argv[2][6] == '\0')
+		write(1, "teste", 5);
+	if (window_init(vars->eng, &vars->glib) == FAILURE)
 		quit(&vars->glib);
 	mlx_loop_hook(vars->glib.mlx, frame, vars);
 	mlx_hook(vars->glib.win, 2, 1, key_press, vars);

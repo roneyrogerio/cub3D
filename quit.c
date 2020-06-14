@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/08 03:17:57 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/14 04:55:26 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	quit(t_glib *glib)
 {
+	if (!glib)
+		return (0);
 	if (glib->frame)
 		mlx_destroy_image(glib->mlx, glib->frame);
-	mlx_destroy_window(glib->mlx, glib->win);
+	if (glib->win)
+		mlx_destroy_window(glib->mlx, glib->win);
+	free(glib->mlx);
 	exit(0);
 }
