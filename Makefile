@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/14 05:16:14 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/14 06:26:38 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,21 @@ LIBFT_H = libft.h
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(ENG_A) $(OBJS)
+$(NAME): _libft _eng $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_A) $(ENG_A) $(LIBS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT_A):
+_libft:
 	make -C $(LIBFT)
 	cp $(LIBFT)/$(LIBFT_A) .
 	cp $(LIBFT)/$(LIBFT_H) .
 	cp $(LIBFT)/$(LIBFT_H) $(ENG)
 
-$(ENG_A):
-	make nolibft -C $(ENG)
-	cp $(ENG)/$(ENG_A) .
+_eng:
+	make _eng.a -C $(ENG)
+	cp $(ENG)/_eng.a $(ENG_A)
 	cp $(ENG)/$(ENG_H) .
 
 clean:
