@@ -6,6 +6,6 @@
 	path = 3d_engine
 	url = git@github.com:roneyrogerio/3D_engine.git
 
-[submodule "libBMP"]
-	path = lib_bmp
-	url = git@github.com:roneyrogerio/libBMP.git
+[submodule "libbmp24"]
+	path = libbmp24
+	url = git@github.com:roneyrogerio/libbmp24.git
