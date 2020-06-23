@@ -1,11 +1,11 @@
 [submodule "libft"]
 	path = libft
-	url = git@github.com:roneyrogerio/libft.git
+	url = https://github.com/roneyrogerio/libft.git
 
 [submodule "raycast-engine"]
 	path = raycast-engine
-	url = git@github.com:roneyrogerio/raycast-engine.git
+	url = https://github.com/roneyrogerio/raycast-engine.git
 
 [submodule "libbmp24"]
 	path = libbmp24
-	url = git@github.com:roneyrogerio/libbmp24.git
+	url = https://github.com/roneyrogerio/libbmp24.git
