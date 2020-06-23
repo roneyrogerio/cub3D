@@ -2,9 +2,9 @@
 	path = libft
 	url = git@github.com:roneyrogerio/libft.git
 
-[submodule "3D_engine"]
-	path = 3d_engine
-	url = git@github.com:roneyrogerio/3D_engine.git
+[submodule "raycast-engine"]
+	path = raycast-engine
+	url = git@github.com:roneyrogerio/raycast-engine.git
 
 [submodule "libbmp24"]
 	path = libbmp24
