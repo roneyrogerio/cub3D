@@ -22,13 +22,13 @@ int	main(int argc, char **argv)
 		exit(FAILURE);
 	}
 	vars = get_vars();
-	if (!(vars->eng = eng_init()))
+	if (!(vars->ngn = ngn_init()))
 		quit(&vars->glib);
 	if (glib_init(&vars->glib) == FAILURE)
 		quit(&vars->glib);
 	if (argc >= 3 && !ft_strncmp(argv[2], "--save", 6) && argv[2][6] == '\0')
 		write(1, "teste", 5);
-	if (window_init(vars->eng, &vars->glib) == FAILURE)
+	if (window_init(vars->ngn, &vars->glib) == FAILURE)
 		quit(&vars->glib);
 	mlx_loop_hook(vars->glib.mlx, frame, vars);
 	mlx_hook(vars->glib.win, 2, 1, key_press, vars);

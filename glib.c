@@ -20,12 +20,12 @@ int		glib_init(t_glib *glib)
 	return (SUCCESS);
 }
 
-int		window_init(void *eng, t_glib *glib)
+int		window_init(void *ngn, t_glib *glib)
 {
 	int	wd;
 	int ht;
 
-	eng_get_window_size(eng, &wd, &ht);
+	ngn_get_window_size(ngn, &wd, &ht);
 	glib->win = mlx_new_window(glib->mlx, wd, ht, "cub3D");
 	if (glib->win == NULL)
 		return (FAILURE);

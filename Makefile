@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/23 19:20:46 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/24 00:02:04 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,15 @@ LIBS = -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
 
-$(NAME): libft/libft.a raycast-engine/eng.a $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)/$(LIBFT_A) \
-		$(ENG)/$(ENG_A) $(LIBS) -I $(LIBFT) -I $(ENG)
+$(NAME): libft/libft.a raycast-engine/_ngn.a $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a \
+		raycast-engine/_ngn.a $(LIBS) 
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ -I libft -I raycast-engine
 
 libft/Makefile:
-	git submodule update --init $(LIBFT)
+	git submodule update --init libft
 
 libft/libft.a: libft/Makefile libft
 	make -C libft
@@ -37,18 +37,18 @@ libft/libft.a: libft/Makefile libft
 raycast-engine/Makefile:
 	git submodule update --init raycast-engine
 
-raycast-engine/_eng.a: raycast-engine/Makefile
-	make _eng.a -C $(ENG)
-	touch raycast-engine/_eng.a
+raycast-engine/_ngn.a: raycast-engine/Makefile
+	make _ngn.a -C raycast-engine
+	touch raycast-engine/_ngn.a
 
 clean:
-	make clean -C $(LIBFT)
-	make clean -C $(ENG)
+	make clean -C libft
+	make clean -C raycast-engine
 	rm -f $(OBJS)
 
 fclean: clean
-	make fclean -C $(LIBFT)
-	make fclean -C $(ENG)
+	make fclean -C libft
+	make fclean -C raycast-engine
 	rm -f $(NAME)
 
 re: fclean $(NAME)

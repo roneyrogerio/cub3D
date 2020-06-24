@@ -17,12 +17,12 @@ int		frame(t_vars *vars)
 	int	wd;
 	int ht;
 
-	eng_movement_update(vars->eng);
-	eng_get_window_size(vars->eng, &wd, &ht);
+	ngn_movement_update(vars->ngn);
+	ngn_get_window_size(vars->ngn, &wd, &ht);
 	vars->glib.frame = mlx_new_image(vars->glib.mlx, wd, ht);
 	if (vars->glib.frame == NULL)
 		return (FAILURE);
-	eng_mini_map(vars->eng, &frame_draw);
+	ngn_mini_map(vars->ngn, &frame_draw);
 	mlx_put_image_to_window(
 			vars->glib.mlx, vars->glib.win, vars->glib.frame, 0, 0);
 	mlx_destroy_image(vars->glib.mlx, vars->glib.frame);

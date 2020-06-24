@@ -17,33 +17,33 @@ int		key_press(int code, t_vars *vars)
 	if (code == 65307)
 		quit(&vars->glib);
 	if (code == 115)
-		eng_set_walk(vars->eng, 1);
+		ngn_set_walk(vars->ngn, 1);
 	if (code == 65361)
-		eng_set_turn(vars->eng, -1);
+		ngn_set_turn(vars->ngn, -1);
 	if (code == 119)
-		eng_set_walk(vars->eng, -1);
+		ngn_set_walk(vars->ngn, -1);
 	if (code == 65363)
-		eng_set_turn(vars->eng, 1);
+		ngn_set_turn(vars->ngn, 1);
 	if (code == 97)
-		eng_set_side(vars->eng, -1);
+		ngn_set_side(vars->ngn, -1);
 	if (code == 100)
-		eng_set_side(vars->eng, 1);
+		ngn_set_side(vars->ngn, 1);
 	return (0);
 }
 
 int		key_release(int code, t_vars *vars)
 {
 	if (code == 119)
-		eng_set_walk(vars->eng, 0);
+		ngn_set_walk(vars->ngn, 0);
 	if (code == 65361)
-		eng_set_turn(vars->eng, 0);
+		ngn_set_turn(vars->ngn, 0);
 	if (code == 115)
-		eng_set_walk(vars->eng, 0);
+		ngn_set_walk(vars->ngn, 0);
 	if (code == 65363)
-		eng_set_turn(vars->eng, 0);
+		ngn_set_turn(vars->ngn, 0);
 	if (code == 97)
-		eng_set_side(vars->eng, 0);
+		ngn_set_side(vars->ngn, 0);
 	if (code == 100)
-		eng_set_side(vars->eng, 0);
+		ngn_set_side(vars->ngn, 0);
 	return (0);
 }

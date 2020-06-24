@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "libft.h"
-# include "eng.h"
+# include "ngn.h"
 # include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -29,7 +29,7 @@ typedef struct	s_glib
 
 typedef struct	s_vars
 {
-	void		*eng;
+	void		*ngn;
 	t_glib		glib;
 	int			save;
 }				t_vars;
@@ -50,7 +50,7 @@ typedef struct	s_alpha
 
 int				rgb_alpha(int rgb1, int rgb2);
 int				glib_init(t_glib *glib);
-int				window_init(void *eng, t_glib *glib);
+int				window_init(void *ngn, t_glib *glib);
 int				frame(t_vars *vars);
 void			frame_draw(int x, int y, int color);
 unsigned		*mlx_image_pixel_ptr(void *img, int x, int y);
