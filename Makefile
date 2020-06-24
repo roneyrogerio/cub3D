@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/24 07:18:43 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/24 19:24:18 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = clang
 SRC = c3d.c c3d_frame.c c3d_key_event.c c3d_window_init.c c3d_quit.c \
 	  mlx_image_pixel_ptr.c c3d_draw.c rgb_alpha.c 
 OBJS = $(SRC:.c=.o)
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g
 LIBS = -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
