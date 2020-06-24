@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   c3d.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/14 05:17:08 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/24 06:55:34 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 # define CUB3D_H
 # include "libft.h"
 # include "ngn.h"
+# include "lbmp.h"
 # include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define SUCCESS 0
-# define FAILURE 1
 
-typedef struct	s_glib
+typedef struct	s_c3d
 {
 	void	*mlx;
 	void	*win;
+	void	*ngn;
 	void	*frame;
-}				t_glib;
-
-typedef struct	s_vars
-{
-	void		*ngn;
-	t_glib		glib;
-	int			save;
-}				t_vars;
+	int		save;
+}				t_c3d;
 
 typedef struct	s_rgb
 {
@@ -48,14 +42,14 @@ typedef struct	s_alpha
 	t_rgb	rgb2;
 }				t_alpha;
 
+t_c3d			g_c3d;
 int				rgb_alpha(int rgb1, int rgb2);
-int				glib_init(t_glib *glib);
-int				window_init(void *ngn, t_glib *glib);
-int				frame(t_vars *vars);
-void			frame_draw(int x, int y, int color);
+int				c3d_window_init(void);
+int				c3d_frame(t_c3d *c3d);
+void			c3d_mlx_draw(int x, int y, int color);
+void			c3d_lbmp_draw(int x, int y, int color);
 unsigned		*mlx_image_pixel_ptr(void *img, int x, int y);
-int				key_press(int code, t_vars *vars);
-int				key_release(int code, t_vars *vars);
-t_vars			*get_vars(void);
-int				quit(t_glib *glib);
+int				c3d_key_press(int code, t_c3d *c3d);
+int				c3d_key_release(int code, t_c3d *c3d);
+int				c3d_quit(int ret_code);
 #endif

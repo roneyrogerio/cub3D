@@ -6,11 +6,11 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 23:25:16 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/14 04:55:40 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/24 07:11:01 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "c3d.h"
 
 int	rgb_alpha(int rgb1, int rgb2)
 {

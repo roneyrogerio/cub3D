@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   glib.c                                             :+:      :+:    :+:   */
+/*   c3d_quit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 20:48:08 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/14 04:54:39 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/24 07:14:22 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "c3d.h"
 
-int		glib_init(t_glib *glib)
+int	c3d_quit(int ret_code)
 {
-	glib->mlx = mlx_init();
-	if (glib->mlx == NULL)
-		return (FAILURE);
-	return (SUCCESS);
+	if (g_c3d.frame)
+		mlx_destroy_image(g_c3d.mlx, g_c3d.frame);
+	if (g_c3d.win)
+		mlx_destroy_window(g_c3d.mlx, g_c3d.win);
+	//ngn_destroy(g_c3d.ngn);
+	free(g_c3d.mlx);
+	exit(ret_code);
 }
-
-int		window_init(void *ngn, t_glib *glib)
-{
-	int	wd;
-	int ht;
-
-	ngn_get_window_size(ngn, &wd, &ht);
-	glib->win = mlx_new_window(glib->mlx, wd, ht, "cub3D");
-	if (glib->win == NULL)
-		return (FAILURE);
-	return (SUCCESS);
-}
-

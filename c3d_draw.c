@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_vars.c                                         :+:      :+:    :+:   */
+/*   c3d_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 20:49:09 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/14 04:54:23 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/06/24 06:25:42 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/06/24 07:10:42 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "c3d.h"
 
-t_vars	*get_vars(void)
+void	c3d_mlx_draw(int x, int y, int color)
 {
-	static t_vars	vars;
+	unsigned	*pixel;
 
-	return (&vars);
+	pixel = mlx_image_pixel_ptr(g_c3d.frame, x, y);
+	*pixel = rgb_alpha(*pixel, color);
+}
+
+void	c3d_lbmp_draw(int x, int y, int color)
+{
+	lbmp_set_pixel_color(g_c3d.frame, x, y, color);
 }
