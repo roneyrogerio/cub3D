@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/14 06:26:38 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/23 19:20:46 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,44 +17,38 @@ SRC = cub3d.c frame.c key_event.c glib.c get_vars.c quit.c \
 OBJS = $(SRC:.c=.o)
 CFLAGS = -Werror -Wextra -Wall
 LIBS = -lmlx -lXext -lX11 -lm
-ENG = 3d_engine
-ENG_A = eng.a
-ENG_H = eng.h
-LIBFT = libft
-LIBFT_A = libft.a
-LIBFT_H = libft.h
 
 all: $(NAME)
 
-$(NAME): _libft _eng $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_A) $(ENG_A) $(LIBS)
+$(NAME): libft/libft.a raycast-engine/eng.a $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)/$(LIBFT_A) \
+		$(ENG)/$(ENG_A) $(LIBS) -I $(LIBFT) -I $(ENG)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-_libft:
-	make -C $(LIBFT)
-	cp $(LIBFT)/$(LIBFT_A) .
-	cp $(LIBFT)/$(LIBFT_H) .
-	cp $(LIBFT)/$(LIBFT_H) $(ENG)
+libft/Makefile:
+	git submodule update --init $(LIBFT)
 
-_eng:
+libft/libft.a: libft/Makefile libft
+	make -C libft
+	touch libft/libft.a
+
+raycast-engine/Makefile:
+	git submodule update --init raycast-engine
+
+raycast-engine/_eng.a: raycast-engine/Makefile
 	make _eng.a -C $(ENG)
-	cp $(ENG)/_eng.a $(ENG_A)
-	cp $(ENG)/$(ENG_H) .
+	touch raycast-engine/_eng.a
 
 clean:
 	make clean -C $(LIBFT)
 	make clean -C $(ENG)
-	rm -rf $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C $(LIBFT)
 	make fclean -C $(ENG)
 	rm -f $(NAME)
-	rm -f $(LIBFT_A)
-	rm -f $(LIBFT_H)
-	rm -f $(ENG_A)
-	rm -f $(ENG_H)
 
 re: fclean $(NAME)
