@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/24 00:02:04 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/24 00:27:39 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ libft/libft.a: libft/Makefile libft
 raycast-engine/Makefile:
 	git submodule update --init raycast-engine
 
-raycast-engine/_ngn.a: raycast-engine/Makefile
+raycast-engine/_ngn.a: raycast-engine/Makefile raycast-engine
 	make _ngn.a -C raycast-engine
 	touch raycast-engine/_ngn.a
 
