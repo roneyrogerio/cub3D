@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/24 20:26:05 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/26 20:45:29 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ int	main(int argc, char **argv)
 {
 	if (argc == 1 && argv[0])
 	{
-		write(2, "\e[31mMissing configuration file in the argument\n", 48);
+		ft_putstr_fd("Missing configuration file in the argument\n", 2);
 		c3d_quit(EXIT_FAILURE);
 	}
-	if ((g_c3d.ngn = ngn_init()) == NULL)
+	if ((g_c3d.ngn = ngn_init(argv[1])) == NULL)
+	{
+		ft_putstr_fd((char *)ngn_strerror(g_ngnerr), 2);
 		c3d_quit(EXIT_FAILURE);
+	}
 	if (argc >= 3 && !ft_strncmp(argv[2], "--save", 6) && argv[2][6] == '\0')
 	{
 		g_c3d.save = 1;

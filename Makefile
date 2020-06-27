@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/24 19:24:18 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/26 20:24:35 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBS = -lmlx -lXext -lX11 -lm
 all: $(NAME)
 
 $(NAME): libft/libft.a raycast-engine/_ngn.a libbmp24/lbmp.a $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a raycast-engine/_ngn.a \
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) raycast-engine/_ngn.a libft/libft.a \
 	   	libbmp24/lbmp.a $(LIBS)
 
 %.o: %.c
