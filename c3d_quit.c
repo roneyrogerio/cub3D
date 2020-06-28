@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 22:15:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/26 04:27:15 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/06/28 06:55:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	c3d_quit(int ret_code)
 		lbmp_destroy(g_c3d.frame);
 	else if (g_c3d.frame)
 		mlx_destroy_image(g_c3d.mlx, g_c3d.frame);
-	exit(0);
 	if (g_c3d.win)
 		mlx_destroy_window(g_c3d.mlx, g_c3d.win);
 	ngn_destroy(g_c3d.ngn);
