@@ -6,58 +6,50 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/26 20:24:35 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/29 02:37:44 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-CC = clang
-SRC = c3d.c c3d_frame.c c3d_key_event.c c3d_window_init.c c3d_quit.c \
+CC   = clang
+SRC  = c3d.c c3d_frame.c c3d_key_event.c c3d_window_init.c c3d_quit.c \
 	  mlx_image_pixel_ptr.c c3d_draw.c rgb_alpha.c 
-OBJS = $(SRC:.c=.o)
-CFLAGS = -Werror -Wextra -Wall -g
-LIBS = -lmlx -lXext -lX11 -lm
+OBJS     := $(SRC:.c=.o)
+CFLAGS    = -Werror -Wextra -Wall -g
+LIBS      = -lmlx -lXext -lX11 -lm
+SUBMOD    = ngn lbmp libft
+SUBMK    := $(addsuffix /Makefile,$(SUBMOD))
+SUBLIB   := $(foreach D,$(SUBMOD),$D/$D.a)
+CMOD     := $(patsubst %,-I %,$(SUBMOD))
+
+.PHONY: $(SUBMOD)
 
 all: $(NAME)
 
-$(NAME): libft/libft.a raycast-engine/_ngn.a libbmp24/lbmp.a $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) raycast-engine/_ngn.a libft/libft.a \
-	   	libbmp24/lbmp.a $(LIBS)
+$(NAME): $(SUBLIB) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(SUBLIB) $(LIBS) $(CMOD)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I libft -I raycast-engine -I libbmp24
+	$(CC) $(CFLAGS) -c $< -o $@ $(CMOD)
 
-libft/Makefile:
-	git submodule update --init libft
+$(SUBLIB): $(SUBMOD)
 
-libft/libft.a: libft/Makefile libft
-	make -C libft
-	touch libft/libft.a
+$(SUBMOD): $(SUBMK)
+	make -C $@
 
-raycast-engine/Makefile:
-	git submodule update --init raycast-engine
-
-raycast-engine/_ngn.a: raycast-engine/Makefile raycast-engine
-	make _ngn.a -C raycast-engine
-	touch raycast-engine/_ngn.a
-
-libbmp24/Makefile:
-	git submodule update --init libbmp24
-
-libbmp24/lbmp.a: libbmp24/Makefile libbmp24
-	make -C libbmp24
-	touch libbmp24/lbmp.a
+$(SUBMK):
+	git submodule update --init
 
 clean:
-	make clean -C libft
-	make clean -C raycast-engine
-	make clean -C libbmp24
 	rm -f $(OBJS)
+	@for module in $(SUBMOD); do \
+		if [ -f $$module/Makefile ]; then make clean -C $$module; fi; \
+	done
 
 fclean: clean
-	make fclean -C libft
-	make fclean -C raycast-engine
-	make fclean -C libbmp24
 	rm -f $(NAME)
+	@for module in $(SUBMOD); do \
+		if [ -f $$module/Makefile ]; then make fclean -C $$module; fi; \
+	done
 
 re: fclean $(NAME)
