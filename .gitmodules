@@ -2,10 +2,10 @@
 	path = libft
 	url = https://github.com/roneyrogerio/libft.git
 
-[submodule "raycast-engine"]
-	path = raycast-engine
+[submodule "ngn"]
+	path = ngn
 	url = https://github.com/roneyrogerio/raycast-engine.git
 
-[submodule "libbmp24"]
-	path = libbmp24
+[submodule "lbmp"]
+	path = lbmp
 	url = https://github.com/roneyrogerio/libbmp24.git
