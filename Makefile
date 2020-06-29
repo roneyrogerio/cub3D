@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/29 04:52:33 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/29 05:11:00 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(SUBLIB) $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(CMOD)
 
 .FORCE:
-$(SUBLIB): .FORCE
+$(SUBLIB): .FORCE $(SUBMK)
 	make -C $(@D)
 
 $(SUBMK):
