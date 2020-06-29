@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/29 02:37:44 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/06/29 04:52:33 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,20 +22,17 @@ SUBMK    := $(addsuffix /Makefile,$(SUBMOD))
 SUBLIB   := $(foreach D,$(SUBMOD),$D/$D.a)
 CMOD     := $(patsubst %,-I %,$(SUBMOD))
 
-.PHONY: $(SUBMOD)
-
 all: $(NAME)
 
 $(NAME): $(SUBLIB) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(SUBLIB) $(LIBS) $(CMOD)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(SUBLIB) $(LIBS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(CMOD)
 
-$(SUBLIB): $(SUBMOD)
-
-$(SUBMOD): $(SUBMK)
-	make -C $@
+.FORCE:
+$(SUBLIB): .FORCE
+	make -C $(@D)
 
 $(SUBMK):
 	git submodule update --init
