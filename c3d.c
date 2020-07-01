@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/26 20:45:29 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/01 09:16:10 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd((char *)ngn_strerror(g_ngnerr), 2);
 		c3d_quit(EXIT_FAILURE);
 	}
-	if (argc >= 3 && !ft_strncmp(argv[2], "--save", 6) && argv[2][6] == '\0')
+	if (argc >= 3 && !ft_strcmp(argv[2], "--save"))
 	{
 		g_c3d.save = 1;
 		c3d_frame(&g_c3d);
