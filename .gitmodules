@@ -8,4 +8,4 @@
 
 [submodule "lbmp"]
 	path = lbmp
-	url = https://github.com/roneyrogerio/libbmp24.git
+	url = https://github.com/roneyrogerio/libbmp.git
