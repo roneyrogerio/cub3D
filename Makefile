@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/06/29 05:11:00 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/07/10 13:44:25 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,11 @@ $(NAME): $(SUBLIB) $(OBJS)
 
 .FORCE:
 $(SUBLIB): .FORCE $(SUBMK)
-	make -C $(@D)
+	@if [ "$(@D)" = "libft" ]; \
+		then make bonus -C libft; \
+	else \
+		make -C $(@D); \
+	fi
 
 $(SUBMK):
 	git submodule update --init
