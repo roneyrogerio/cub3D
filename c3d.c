@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 18:00:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/07/05 05:43:38 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/24 13:40:02 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(g_c3d.mlx, &c3d_frame, &g_c3d);
 	mlx_hook(g_c3d.win, 2, 1, &c3d_key_press, &g_c3d);
 	mlx_hook(g_c3d.win, 3, 2, &c3d_key_release, &g_c3d);
+	mlx_hook(g_c3d.win, 17, 0x20000, &c3d_quit, NULL);
 	mlx_loop(g_c3d.mlx);
 	return (EXIT_SUCCESS);
 }
