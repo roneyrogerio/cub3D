@@ -9,3 +9,7 @@
 [submodule "lbmp"]
 	path = lbmp
 	url = https://github.com/roneyrogerio/libbmp.git
+
+[submodule "libmlx"]
+	path = libmlx
+	url = https://github.com/42Paris/minilibx-linux.git

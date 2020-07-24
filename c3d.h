@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/26 06:05:10 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/24 12:34:16 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "libft.h"
 # include "ngn.h"
 # include "lbmp.h"
-# include <mlx.h>
+# include "mlx.h"
 # include <unistd.h>
 
 typedef struct	s_c3d
