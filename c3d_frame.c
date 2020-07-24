@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:04:24 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/07/20 16:57:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/24 14:03:52 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		c3d_frame(t_c3d *c3d)
 	ngn_get_window_size(c3d->ngn, &wd, &ht);
 	if (c3d->save && (c3d->frame = lbmp_new(wd, ht, 24)))
 	{
+		ngn_camera(c3d->ngn, &c3d_lbmp_draw);
 		ngn_mini_map(c3d->ngn, &c3d_lbmp_draw);
 		lbmp_save("cub3D.bmp", c3d->frame);
 		return (EXIT_SUCCESS);
