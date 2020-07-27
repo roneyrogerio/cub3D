@@ -6,12 +6,12 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 19:53:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/07/24 12:34:16 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:11:20 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef C3D_H
+# define C3D_H
 # include "libft.h"
 # include "ngn.h"
 # include "lbmp.h"

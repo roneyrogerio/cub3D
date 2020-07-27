@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 20:04:24 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/07/24 14:03:52 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:10:30 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		c3d_frame(t_c3d *c3d)
 		lbmp_save("cub3D.bmp", c3d->frame);
 		return (EXIT_SUCCESS);
 	}
-	if((c3d->frame = mlx_new_image(c3d->mlx, wd, ht)))
+	if ((c3d->frame = mlx_new_image(c3d->mlx, wd, ht)))
 	{
 		ngn_camera(c3d->ngn, &c3d_mlx_draw);
 		ngn_mini_map(c3d->ngn, &c3d_mlx_draw);

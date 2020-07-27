@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 19:42:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/06/24 07:09:39 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:11:02 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ unsigned	*mlx_image_pixel_ptr(void *img, int x, int y)
 	dst += y * size_line + x * (bpp / 8);
 	return ((unsigned *)dst);
 }
-

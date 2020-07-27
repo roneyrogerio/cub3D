@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 06:25:42 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/07/24 14:35:43 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:09:42 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	c3d_mlx_draw(int x, int y, int color)
 void	c3d_lbmp_draw(int x, int y, int color)
 {
 	uint32_t	pixel;
+
 	pixel = lbmp_get_pixel_color(g_c3d.frame, x, y);
 	lbmp_set_pixel_color(g_c3d.frame, x, y, rgb_alpha(pixel, color));
 }
