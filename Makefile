@@ -6,7 +6,7 @@
 #    By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/31 21:55:18 by rde-oliv          #+#    #+#              #
-#    Updated: 2020/07/28 15:14:48 by rde-oliv         ###   ########.fr        #
+#    Updated: 2020/08/06 17:18:57 by rde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC   = clang
 SRC  = c3d.c c3d_frame.c c3d_key_event.c c3d_window_init.c c3d_quit.c \
 	  mlx_image_pixel_ptr.c c3d_draw.c rgb_alpha.c 
 OBJS     := $(SRC:.c=.o)
-CFLAGS    = -Werror -Wextra -Wall -g
+CFLAGS    = -Werror -Wextra -Wall
 LIBS      = -lXext -lX11 -lm
 SUBMOD    = ngn lbmp libft libmlx
 SUBMK    := $(addsuffix /Makefile,$(SUBMOD))
